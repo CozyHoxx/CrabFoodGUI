@@ -22,6 +22,7 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
+
     public volatile static Clock clock = new Clock();
     public static CrabFoodOperator cfOperator = new CrabFoodOperator();
     Scene menuScene, logScene;
@@ -30,16 +31,12 @@ public class Main extends Application {
         launch(args);
     }
 
+
     //The css to clock
     static String getResource(String path) {
         return Main.class.getResource(path).toExternalForm();
     }
 
-    public static void updateProcess() {
-        if (clock.getTime().equalsIgnoreCase("00:00")) {
-            cfOperator.appendToProcess(clock.getTime() + " A new day has begun!");
-        }
-    }
 
     public static String pad(int fieldWidth, char padChar, String s) {
         StringBuilder sb = new StringBuilder();
@@ -50,20 +47,34 @@ public class Main extends Application {
         return sb.toString();
     }
 
+    public static void updateProcess() {
+        if (clock.getTime().equalsIgnoreCase("00:00")) {
+            cfOperator.appendToProcess(clock.getTime() + " A new day has begun!");
+        }
+
+        if(CrabFoodOperator.copy_listOfProcesses.size!=0) {
+            while (clock.getTime().equalsIgnoreCase(CrabFoodOperator.copy_listOfProcesses.getTime_Str(0))) {
+               String str = CrabFoodOperator.copy_listOfProcesses.removeFirstNode();
+                System.out.println(str);
+                cfOperator.appendToProcess(str);
+
+            }
+        }
+
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+
         //making the menu scene
         makeMenuScene(primaryStage);
         //makeing the log scene
         makeLogScene(primaryStage);
 
 
-        Map map = new Map(Map.getMapSize());
-        map.generateMap();
-
-
         primaryStage.setMinHeight(600);
-        primaryStage.setMinWidth(802);
+        primaryStage.setMinWidth(1100);
         primaryStage.setScene(menuScene);
         primaryStage.setTitle("CrabFood");
         primaryStage.setOnHidden(e -> {
@@ -95,7 +106,7 @@ public class Main extends Application {
                             }
                         }
                 ),
-                new KeyFrame(Duration.seconds(1))
+                new KeyFrame(Duration.seconds(0.5))
         );
 
 
@@ -122,7 +133,7 @@ public class Main extends Application {
 
         //TEXT AREA
         TextArea textArea = new TextArea();
-        textArea.setMinSize(500, 400);
+        textArea.setMinSize(600, 500);
         textArea.setEditable(false);
         textArea.setFont(new Font("Verdana", 17));
         textArea.textProperty().bind(CrabFoodOperator.getProcess());
@@ -142,7 +153,7 @@ public class Main extends Application {
         borderPane.setTop(hbox);
         //set menu buttons on the left
         borderPane.setLeft(vbox);
-        //set update log in the center
+        //set update process in the center
         borderPane.setCenter(gridPane);
 
         //BUTTON to view log
@@ -158,7 +169,7 @@ public class Main extends Application {
 
         vbox.getChildren().addAll(btnViewLog, btn_viewMap);
 
-        menuScene = new Scene(borderPane, 1000, 800, Color.TRANSPARENT);
+        menuScene = new Scene(borderPane, 1200, 800, Color.TRANSPARENT);
         menuScene.getStylesheets().add(getResource("menu.css"));
 
 

@@ -8,6 +8,7 @@ public class Customer {
     private int deliveryTime;
     private int finishedCookingTime;
 
+
     public Customer() {
     }
 
@@ -27,11 +28,21 @@ public class Customer {
     }
 
 
-    public String getOrderTime() {
-       // String hour = Main.pad(2, '0', Integer.toString(orderTime[0]) + "");
-       // String minute = Main.pad(2, '0', Integer.toString(orderTime[1]) + "");
-       // return hour + ":" + minute;
+    public String getOrderTimeStr() {
+        // String hour = Main.pad(2, '0', Integer.toString(orderTime[0]) + "");
+        // String minute = Main.pad(2, '0', Integer.toString(orderTime[1]) + "");
+        // return hour + ":" + minute;
         return this.orderTime;
+    }
+
+    public int getOrderTimeInt() {
+        String[] tempArr;
+        tempArr = orderTime.split(":");
+        int[] orderTime = new int[2];
+        orderTime[0] = Integer.parseInt(tempArr[0]);
+        orderTime[1] = Integer.parseInt(tempArr[1]);
+
+        return orderTime[0] + orderTime[1];
     }
 
     public void addDish(String dish) {
@@ -55,6 +66,6 @@ public class Customer {
     }
 
     public String toString() {
-        return this.getOrderTime() + "\t: " + this.dish + " from " + this.restaurant;
+        return this.getOrderTimeStr() + "\t: " + this.dish + " from " + this.restaurant;
     }
 }
