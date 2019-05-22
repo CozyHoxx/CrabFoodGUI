@@ -1,20 +1,26 @@
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -22,6 +28,7 @@ import javafx.util.Duration;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Set;
 
 
 public class Main extends Application {
@@ -119,7 +126,7 @@ public class Main extends Application {
         BorderPane borderPane = new BorderPane();
         //CREATE VBOX TO STORE MENU BUTTONS
         VBox vbox = new VBox(10);
-        vbox.setPrefWidth(150);
+        vbox.setPrefWidth(180);
         vbox.setAlignment(Pos.TOP_CENTER);
         vbox.setPadding(new Insets(10, 0, 0, 0));
 
@@ -160,16 +167,20 @@ public class Main extends Application {
 
         //BUTTON to view log
         Button btnViewLog = new Button("View Log");
-        btnViewLog.setMaxSize(80, 50);
+        btnViewLog.setMaxSize(150, 50);
         btnViewLog.setOnAction(e -> primaryStage.setScene(logScene));
 
         //BUTTON to view map
         Button btn_viewMap = new Button("View Map");
-        btn_viewMap.setMaxSize(80, 50);
+        btn_viewMap.setMaxSize(150, 50);
         btn_viewMap.setOnAction(e -> showMap());
 
+        //BUTTON to view daily order status
+        Button btn_viewDailyStatus = new Button("View Daily Status");
+        btn_viewDailyStatus.setMaxSize(150, 50);
+        btn_viewDailyStatus.setOnAction(e -> showOrderInformation());
 
-        vbox.getChildren().addAll(btnViewLog, btn_viewMap);
+        vbox.getChildren().addAll(btnViewLog, btn_viewMap, btn_viewDailyStatus);
 
         menuScene = new Scene(borderPane, 1200, 800, Color.TRANSPARENT);
         menuScene.getStylesheets().add(getResource("menu.css"));
@@ -210,8 +221,8 @@ public class Main extends Application {
         borderPane.setBottom(back_btn);
 
         BorderPane.setAlignment(back_btn, Pos.CENTER);
-        BorderPane.setMargin(back_btn,new Insets(10,0,0,0));
-        BorderPane.setMargin(label, new Insets(0,0,10,0));
+        BorderPane.setMargin(back_btn, new Insets(10, 0, 0, 0));
+        BorderPane.setMargin(label, new Insets(0, 0, 10, 0));
         BorderPane.setAlignment(label, Pos.CENTER);
         borderPane.setPadding(new Insets(10, 0, 10, 0));
 
@@ -260,5 +271,72 @@ public class Main extends Application {
         window.show();
 
     }
+
+    public void showOrderInformation() {
+        Stage informationWindow = new Stage();
+        informationWindow.setTitle("Order Information");
+
+        Scene scene = new Scene(new Group());
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+        );
+
+        Set<String> keys = CrabFoodOperator.orderStatusList.keySet(); //get all keys
+
+        for (String str : keys) {
+            pieChartData.add(new PieChart.Data(str, CrabFoodOperator.orderStatusList.get(str)));
+        }
+
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setTitle("Orders from Restaurant");
+        //chart.setLegendVisible(false);
+
+        chart.getData().forEach(data -> {
+            String percentage =(int)data.getPieValue() + " Orders";
+            Tooltip toolTip = new Tooltip(percentage);
+            toolTip.setFont(Font.font("Arial",15));
+            Tooltip.install(data.getNode(), toolTip);
+        });
+
+        final Label caption = new Label("");
+        caption.setTextFill(Color.BLACK);
+        caption.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        for (final PieChart.Data data : chart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent e) {
+                            // System.out.println("Mouse pressed");
+
+                            Timeline appear = new Timeline(new KeyFrame(
+                                    Duration.seconds(2), new KeyValue(caption.opacityProperty(), 1, Interpolator.DISCRETE)
+                            ));
+
+                            FadeTransition fade = new FadeTransition(Duration.seconds(1), caption);
+                            fade.setFromValue(1);
+                            fade.setToValue(0);
+
+                            SequentialTransition displayThenFade = new SequentialTransition(
+                                    appear,fade
+                            );
+
+                            appear.setCycleCount(1);
+                            displayThenFade.play();
+
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(String.valueOf((int) data.getPieValue())
+                                    + " orders");
+                        }
+                    });
+        }
+
+        ((Group) scene.getRoot()).getChildren().addAll(chart, caption);
+
+        informationWindow.setScene(scene);
+        informationWindow.show();
+
+    }
+
 }
 

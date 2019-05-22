@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/log.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/map.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CrabFoodGUI/CrabFoodOperator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CrabFoodGUI/CrabFoodOperator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CrabFoodGUI/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CrabFoodGUI/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CrabFoodGUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CrabFoodGUI/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CrabFoodGUI/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CrabFoodGUI/menu.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CrabFoodOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CrabFoodOperator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu.css" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,10 +68,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CrabFoodOperator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
+            <state relative-caret-position="789">
+              <caret line="84" column="88" selection-start-line="84" selection-start-column="88" selection-end-line="84" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#641#657#0" expanded="true" />
                 <element signature="method#getDishPrepTime#0;class#CrabFoodOperator#0" />
                 <element signature="method#branchIdentifier#0;class#CrabFoodOperator#0" />
                 <element signature="method#appendToProcess#0;class#CrabFoodOperator#0" />
@@ -92,15 +88,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logger.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+            <state relative-caret-position="2005">
+              <caret line="299" selection-start-line="299" selection-end-line="299" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1573#1574#0" expanded="true" />
-                <element signature="e#1598#1599#0" expanded="true" />
+                <element signature="e#981#982#0" expanded="true" />
+                <element signature="e#1009#1010#0" expanded="true" />
+                <element signature="method#pad#0;class#Main#0" />
+                <element signature="method#makeLogScene#0;class#Main#0" />
+                <element signature="method#showMap#0;class#Main#0" />
               </folding>
             </state>
           </provider>
@@ -109,59 +108,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Customer.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+            <state relative-caret-position="32">
+              <caret line="2" column="11" lean-forward="true" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Customer.java">
+        <entry file="file://$PROJECT_DIR$/src/Restaurant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="229" lean-forward="true" selection-start-line="229" selection-end-line="229" />
+            <state relative-caret-position="176">
+              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#981#982#0" expanded="true" />
-                <element signature="e#1009#1010#0" expanded="true" />
-                <element signature="method#pad#0;class#Main#0" />
+                <element signature="e#306#307#0" expanded="true" />
+                <element signature="e#338#339#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/map.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/log.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="5" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/menu.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -229,14 +190,14 @@
         <option value="$PROJECT_DIR$/src/SomeNode.java" />
         <option value="$PROJECT_DIR$/Customer.txt" />
         <option value="$PROJECT_DIR$/src/SomeList.java" />
-        <option value="$PROJECT_DIR$/src/CrabFoodOperator.java" />
         <option value="$PROJECT_DIR$/src/Logger.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/log.css" />
         <option value="$PROJECT_DIR$/src/map.css" />
         <option value="$PROJECT_DIR$/src/Map.java" />
         <option value="$PROJECT_DIR$/src/menu.css" />
         <option value="$PROJECT_DIR$/Log.txt" />
+        <option value="$PROJECT_DIR$/src/CrabFoodOperator.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -285,7 +246,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558523038456" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558547971543" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../CrabFood" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -401,18 +362,17 @@
       <workItem from="1558012399382" duration="9014000" />
       <workItem from="1558054997555" duration="3743000" />
       <workItem from="1558064461729" duration="15657000" />
-      <workItem from="1558497781281" duration="12817000" />
+      <workItem from="1558497781281" duration="21218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72102000" />
+    <option name="totallyTimeSpent" value="80503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12793177" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12793177" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -446,7 +406,7 @@
       <window_info anchor="right" id="Capture Analysis" order="8" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
-      <window_info anchor="right" id="Run" order="11" visible="true" weight="0.29904053" />
+      <window_info anchor="right" id="Run" order="11" weight="0.3097015" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.12793177" />
@@ -582,20 +542,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Restaurant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="347" selection-start-line="347" selection-end-line="347" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Input.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -632,37 +578,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Customer.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
           <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CrabFoodOperator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getDishPrepTime#0;class#CrabFoodOperator#0" />
-            <element signature="method#branchIdentifier#0;class#CrabFoodOperator#0" />
-            <element signature="method#appendToProcess#0;class#CrabFoodOperator#0" />
-            <element signature="method#getProcess#0;class#CrabFoodOperator#0" />
-            <element signature="method#isNum#0;class#CrabFoodOperator#0" />
-            <element signature="method#readCustomer#0;class#CrabFoodOperator#0" />
-            <element signature="method#checkCustomer#0;class#CrabFoodOperator#0" />
-            <element signature="method#toInt#0;class#CrabFoodOperator#0" />
-            <element signature="method#readRestaurant#0;class#CrabFoodOperator#0" />
-            <element signature="method#checkRestaurant#0;class#CrabFoodOperator#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -696,7 +615,7 @@
     <entry file="file://$PROJECT_DIR$/src/menu.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -715,15 +634,63 @@
     <entry file="file://$PROJECT_DIR$/Log.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="347" selection-start-line="347" selection-end-line="347" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Restaurant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding>
+            <element signature="e#306#307#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Customer.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="11" lean-forward="true" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CrabFoodOperator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="84" column="88" selection-start-line="84" selection-start-column="88" selection-end-line="84" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#641#657#0" expanded="true" />
+            <element signature="method#getDishPrepTime#0;class#CrabFoodOperator#0" />
+            <element signature="method#branchIdentifier#0;class#CrabFoodOperator#0" />
+            <element signature="method#appendToProcess#0;class#CrabFoodOperator#0" />
+            <element signature="method#getProcess#0;class#CrabFoodOperator#0" />
+            <element signature="method#isNum#0;class#CrabFoodOperator#0" />
+            <element signature="method#readCustomer#0;class#CrabFoodOperator#0" />
+            <element signature="method#checkCustomer#0;class#CrabFoodOperator#0" />
+            <element signature="method#toInt#0;class#CrabFoodOperator#0" />
+            <element signature="method#readRestaurant#0;class#CrabFoodOperator#0" />
+            <element signature="method#checkRestaurant#0;class#CrabFoodOperator#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="229" lean-forward="true" selection-start-line="229" selection-end-line="229" />
+        <state relative-caret-position="2005">
+          <caret line="299" selection-start-line="299" selection-end-line="299" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#981#982#0" expanded="true" />
             <element signature="e#1009#1010#0" expanded="true" />
             <element signature="method#pad#0;class#Main#0" />
+            <element signature="method#makeLogScene#0;class#Main#0" />
+            <element signature="method#showMap#0;class#Main#0" />
           </folding>
         </state>
       </provider>

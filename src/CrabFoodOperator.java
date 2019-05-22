@@ -4,6 +4,7 @@ import javafx.beans.property.StringProperty;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class CrabFoodOperator {
@@ -11,6 +12,7 @@ public class CrabFoodOperator {
     static ArrayList<Restaurant> listOfRestaurant = new ArrayList<Restaurant>();
     static SomeList<Integer, String> listOfProcesses = new SomeList<>();
     static SomeList<Integer, String> copy_listOfProcesses = new SomeList<>();
+    static HashMap<String, Integer> orderStatusList = new HashMap<String, Integer>();
     private static StringProperty process;
     private static ArrayList<Customer> listOfCustomer = new ArrayList<>();
     private static Logger logger = new Logger();
@@ -79,7 +81,9 @@ public class CrabFoodOperator {
             // this will log to textfile
             // logger.log(tempCustomer, customerNumber);
 
-            logger.log(tempCustomer,customerNumber);
+            orderStatusList.put(restaurant, orderStatusList.get(restaurant) + 1);
+            //System.out.println(orderStatusList+"\n"); //print out whats in the haspmap
+            logger.log(tempCustomer, customerNumber);
 
             customerNumber++;
 
@@ -210,6 +214,7 @@ public class CrabFoodOperator {
                     //  System.out.println(str);
                     if (readingRes) {
                         listOfRestaurant.add(new Restaurant(str));
+                        orderStatusList.put(str,0);
                         readingRes = false;
                     } else if (str.equals("")) {
                         //reset to reading a new restaurant
