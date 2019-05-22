@@ -1,13 +1,6 @@
 .root {
     -fx-background-color: linear-gradient(to bottom, cornsilk, wheat);
-    -fx-padding: 12;
+
     -fx-background-insets: 5;
     -fx-effect: dropshadow(three-pass-box, wheat, 10, 0, 0, 0);
 }
-
-#digitalClock {
-    -fx-font-size: 30px;
-    -fx-font-family: 'Verdana';
-}
-
-

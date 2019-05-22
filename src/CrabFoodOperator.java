@@ -13,10 +13,11 @@ public class CrabFoodOperator {
     static SomeList<Integer, String> copy_listOfProcesses = new SomeList<>();
     private static StringProperty process;
     private static ArrayList<Customer> listOfCustomer = new ArrayList<>();
-
+    private static Logger logger = new Logger();
 
     public CrabFoodOperator() {
 
+        logger.startLog();
         readRestaurant();
         readCustomer();
         Map map = new Map(Map.getMapSize());
@@ -78,6 +79,7 @@ public class CrabFoodOperator {
             // this will log to textfile
             // logger.log(tempCustomer, customerNumber);
 
+            logger.log(tempCustomer,customerNumber);
 
             customerNumber++;
 

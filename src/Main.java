@@ -19,24 +19,27 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 
 public class Main extends Application {
 
 
     public volatile static Clock clock = new Clock();
     public static CrabFoodOperator cfOperator = new CrabFoodOperator();
+    static Logger logger = new Logger();
     Scene menuScene, logScene;
 
     public static void main(String[] args) {
         launch(args);
     }
 
-
-    //The css to clock
+    //The method to access CSS
     static String getResource(String path) {
         return Main.class.getResource(path).toExternalForm();
     }
-
 
     public static String pad(int fieldWidth, char padChar, String s) {
         StringBuilder sb = new StringBuilder();
@@ -52,15 +55,13 @@ public class Main extends Application {
             cfOperator.appendToProcess(clock.getTime() + " A new day has begun!");
         }
 
-        if(CrabFoodOperator.copy_listOfProcesses.size!=0) {
+        if (CrabFoodOperator.copy_listOfProcesses.size != 0) {
             while (clock.getTime().equalsIgnoreCase(CrabFoodOperator.copy_listOfProcesses.getTime_Str(0))) {
-               String str = CrabFoodOperator.copy_listOfProcesses.removeFirstNode();
+                String str = CrabFoodOperator.copy_listOfProcesses.removeFirstNode();
                 System.out.println(str);
                 cfOperator.appendToProcess(str);
-
             }
         }
-
     }
 
     @Override
@@ -78,6 +79,7 @@ public class Main extends Application {
         primaryStage.setScene(menuScene);
         primaryStage.setTitle("CrabFood");
         primaryStage.setOnHidden(e -> {
+            logger.endLog();
             Platform.exit();
             System.out.println("Performing system cleanup");
         });
@@ -129,13 +131,13 @@ public class Main extends Application {
         hbox.getChildren().addAll(timeString, digitalClock);
 
         Label processLabel = new Label("Processes");
-        processLabel.setFont(new Font("Verdana", 18));
+        processLabel.setFont(Font.font("Verdana", 18));
 
         //TEXT AREA
         TextArea textArea = new TextArea();
         textArea.setMinSize(600, 500);
         textArea.setEditable(false);
-        textArea.setFont(new Font("Verdana", 17));
+        textArea.setFont(Font.font("Verdana", 17));
         textArea.textProperty().bind(CrabFoodOperator.getProcess());
 
 
@@ -172,17 +174,49 @@ public class Main extends Application {
         menuScene = new Scene(borderPane, 1200, 800, Color.TRANSPARENT);
         menuScene.getStylesheets().add(getResource("menu.css"));
 
-
     }
 
     public void makeLogScene(Stage primaryStage) {
-        GridPane gridPane = new GridPane();
-        Button btn = new Button("back");
-        btn.setOnAction(e -> primaryStage.setScene(menuScene));
 
-        gridPane.getChildren().add(btn);
+        BorderPane borderPane = new BorderPane();
+        Label label = new Label("Log File");
+        label.setFont(Font.font("Verdana", 20));
+        label.setAlignment(Pos.CENTER);
 
-        logScene = new Scene(gridPane, 400, 400);
+        TextArea textArea = new TextArea();
+        textArea.setEditable(false);
+        textArea.setFont(Font.font("Monospace", 16));
+
+        File logFile = logger.getFile();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(logger.getFile()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+
+                textArea.appendText(line + "\n");
+            }
+
+        } catch (Exception e) {
+
+        }
+
+
+        Button back_btn = new Button("Back");
+        back_btn.setOnAction(e -> primaryStage.setScene(menuScene));
+
+
+        borderPane.setTop(label);
+        borderPane.setCenter(textArea);
+        borderPane.setBottom(back_btn);
+
+        BorderPane.setAlignment(back_btn, Pos.CENTER);
+        BorderPane.setMargin(back_btn,new Insets(10,0,0,0));
+        BorderPane.setMargin(label, new Insets(0,0,10,0));
+        BorderPane.setAlignment(label, Pos.CENTER);
+        borderPane.setPadding(new Insets(10, 0, 10, 0));
+
+        logScene = new Scene(borderPane, 600, 500);
+        logScene.getStylesheets().add(getResource("log.css"));
 
     }
 
@@ -219,8 +253,12 @@ public class Main extends Application {
         window.setResizable(false);
         window.initModality(Modality.NONE);
         int windowWidth = Map.getSize() * (Map.rectSize + 30);
-        window.setScene(new Scene(borderPane, windowWidth, windowWidth - 20));
+        Scene mapScene = new Scene(borderPane, windowWidth, windowWidth - 20);
+        mapScene.getStylesheets().add(getResource("map.css"));
+        //window.setScene(new Scene(borderPane, windowWidth, windowWidth - 20));
+        window.setScene(mapScene);
         window.show();
+
     }
 }
 

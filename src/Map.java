@@ -62,7 +62,7 @@ public class Map {
                         rect.setFill(Color.MEDIUMTURQUOISE);
                         break;
                     default:
-                        rect.setFill(Color.TRANSPARENT);
+                        rect.setFill(Color.SNOW);
                         break;
 
                 }
