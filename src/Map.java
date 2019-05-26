@@ -13,7 +13,7 @@ import java.util.List;
 public class Map {
     public static List<List<String>> mapArray;
     private static int size;
-    static int rectSize = 40;
+    static int rectSize = 40; // The size of the squares for each grid of the map
 
     public Map(int size) {
         mapArray = new ArrayList<List<String>>(size);
@@ -25,6 +25,7 @@ public class Map {
         return temp;
     }
 
+    // Determine the size of the map based on the largest X and Y of given branch of each restaurant
     public static int getMapSize() {
         int size = 0;
         for (int i = 0; i < CrabFoodOperator.listOfRestaurant.size(); i++) {
@@ -39,9 +40,9 @@ public class Map {
         return size + 1;
     }
 
+    // Return a gridpane of the Map
     public static GridPane getMapPane() {
         GridPane gridpane = new GridPane();
-
 
         for (int i = 0, branchRow = mapArray.size() - 1; i < mapArray.size(); i++, branchRow--) {
             for (int j = 0, branchCol = 0; j < mapArray.get(i).size(); j++, branchCol++) {
@@ -51,6 +52,7 @@ public class Map {
                 text.setFont(new Font("Verdana", 25));
                 Rectangle rect = new Rectangle(rectSize, rectSize);
 
+                // Colors of the grid based on the Restaurant
                 switch(tempStr){
                     case "B":
                         rect.setFill(Color.ORCHID);
@@ -64,10 +66,7 @@ public class Map {
                     default:
                         rect.setFill(Color.SNOW);
                         break;
-
                 }
-                //rect.setFill(Color.TRANSPARENT);
-                //rect.setFill(Color.rgb(int,int,int);
                 rect.setStroke(Color.BLACK);
                 rect.setStrokeWidth(1);
 
@@ -76,20 +75,21 @@ public class Map {
 
                 gridpane.add(stack, j, i);
             }
-
         }
-
         return gridpane;
     }
 
+    // Generate the map
     public void generateMap() {
         for (int i = 0; i < size; i++) {
+            // Filling the map with "0"s
             mapArray.add(new ArrayList<String>(Collections.nCopies(size, "0")));
         }
         searchForBranch();
         printMap();
     }
 
+    // Add the Initial of Restaurant in the map at each branch location
     public void searchForBranch() {
         for (int i = 0; i < CrabFoodOperator.listOfRestaurant.size(); i++) {
             Restaurant tempRestaurant = CrabFoodOperator.listOfRestaurant.get(i);
@@ -102,6 +102,7 @@ public class Map {
         }
     }
 
+    // Print the map in console
     public void printMap() {
         int branchRow = mapArray.size();
         int z = 0;
@@ -135,15 +136,5 @@ public class Map {
             z = 0;
             System.out.println();
         }
-
-        /*
-        for (int i = mapArray.size() - 1; i >= 0; i--) {
-            for (int j = 0; j < mapArray.get(i).size(); j++) {
-                System.out.print(mapArray.get(i).get(j));
-            }
-            System.out.println();
-        }
-        */
     }
-
 }

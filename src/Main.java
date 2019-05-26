@@ -9,22 +9,18 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,18 +28,18 @@ import java.util.Set;
 
 
 public class Main extends Application {
-
-
+    private final static double animationDuration = 1;
     public volatile static Clock clock = new Clock();
     public static CrabFoodOperator cfOperator = new CrabFoodOperator();
     static Logger logger = new Logger();
     Scene menuScene, logScene;
+    private static boolean processEnded = false;
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    //The method to access CSS
+    // The method to access CSS
     static String getResource(String path) {
         return Main.class.getResource(path).toExternalForm();
     }
@@ -61,13 +57,20 @@ public class Main extends Application {
         if (clock.getTime().equalsIgnoreCase("00:00")) {
             cfOperator.appendToProcess(clock.getTime() + " A new day has begun!");
         }
-
         if (CrabFoodOperator.copy_listOfProcesses.size != 0) {
             while (clock.getTime().equalsIgnoreCase(CrabFoodOperator.copy_listOfProcesses.getTime_Str(0))) {
                 String str = CrabFoodOperator.copy_listOfProcesses.removeFirstNode();
                 System.out.println(str);
                 cfOperator.appendToProcess(str);
             }
+        }
+
+        if(CrabFoodOperator.copy_listOfProcesses.size==0 && !processEnded){
+            processEnded=true;
+            String endOfProcess ="";
+            endOfProcess += clock.getTime() + " All customers are served and shops are closed";
+            System.out.println(endOfProcess);
+            cfOperator.appendToProcess(endOfProcess);
         }
     }
 
@@ -108,14 +111,14 @@ public class Main extends Application {
                                 String hourString = pad(2, '0', clock.getHOUR() + "");
                                 String minuteString = pad(2, '0', clock.getMINUTE() + "");
                                 //check if clock is correct or not
-                                System.out.println(hourString + ":" + minuteString);
+                                //System.out.println(hourString + ":" + minuteString);
                                 digitalClock.setText(hourString + ":" + minuteString);
                                 updateProcess();
                                 clock.updateClock();
                             }
                         }
                 ),
-                new KeyFrame(Duration.seconds(0.5))
+                new KeyFrame(Duration.seconds(animationDuration))
         );
 
 
@@ -166,21 +169,26 @@ public class Main extends Application {
         borderPane.setCenter(gridPane);
 
         //BUTTON to view log
-        Button btnViewLog = new Button("View Log");
+        Button btnViewLog = new Button("Log");
         btnViewLog.setMaxSize(150, 50);
         btnViewLog.setOnAction(e -> primaryStage.setScene(logScene));
 
         //BUTTON to view map
-        Button btn_viewMap = new Button("View Map");
+        Button btn_viewMap = new Button("Map");
         btn_viewMap.setMaxSize(150, 50);
         btn_viewMap.setOnAction(e -> showMap());
 
         //BUTTON to view daily order status
-        Button btn_viewDailyStatus = new Button("View Daily Status");
+        Button btn_viewDailyStatus = new Button("Daily Status");
         btn_viewDailyStatus.setMaxSize(150, 50);
         btn_viewDailyStatus.setOnAction(e -> showOrderInformation());
 
-        vbox.getChildren().addAll(btnViewLog, btn_viewMap, btn_viewDailyStatus);
+        //BUTTONG to view Restaurant dish order details
+        Button btn_viewRestaurantStatus = new Button("Restaurant Dish Status");
+        btn_viewRestaurantStatus.setMaxSize(150, 150);
+        btn_viewRestaurantStatus.setOnAction(e -> showDishInformation());
+
+        vbox.getChildren().addAll(btnViewLog, btn_viewMap, btn_viewDailyStatus, btn_viewRestaurantStatus);
 
         menuScene = new Scene(borderPane, 1200, 800, Color.TRANSPARENT);
         menuScene.getStylesheets().add(getResource("menu.css"));
@@ -276,10 +284,11 @@ public class Main extends Application {
         Stage informationWindow = new Stage();
         informationWindow.setTitle("Order Information");
 
+        BorderPane borderPane = new BorderPane();
+
         Scene scene = new Scene(new Group());
 
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-        );
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
         Set<String> keys = CrabFoodOperator.orderStatusList.keySet(); //get all keys
 
@@ -292,9 +301,9 @@ public class Main extends Application {
         //chart.setLegendVisible(false);
 
         chart.getData().forEach(data -> {
-            String percentage =(int)data.getPieValue() + " Orders";
+            String percentage = (int) data.getPieValue() + " Order(s)";
             Tooltip toolTip = new Tooltip(percentage);
-            toolTip.setFont(Font.font("Arial",15));
+            toolTip.setFont(Font.font("Arial", 15));
             Tooltip.install(data.getNode(), toolTip);
         });
 
@@ -307,9 +316,8 @@ public class Main extends Application {
                         @Override
                         public void handle(MouseEvent e) {
                             // System.out.println("Mouse pressed");
-
                             Timeline appear = new Timeline(new KeyFrame(
-                                    Duration.seconds(2), new KeyValue(caption.opacityProperty(), 1, Interpolator.DISCRETE)
+                                    Duration.seconds(1), new KeyValue(caption.opacityProperty(), 1, Interpolator.DISCRETE)
                             ));
 
                             FadeTransition fade = new FadeTransition(Duration.seconds(1), caption);
@@ -317,7 +325,7 @@ public class Main extends Application {
                             fade.setToValue(0);
 
                             SequentialTransition displayThenFade = new SequentialTransition(
-                                    appear,fade
+                                    appear, fade
                             );
 
                             appear.setCycleCount(1);
@@ -332,9 +340,106 @@ public class Main extends Application {
         }
 
         ((Group) scene.getRoot()).getChildren().addAll(chart, caption);
+        borderPane.setCenter(chart);
+        borderPane.getStylesheets().add(getResource("DishInfo.css"));
+        // borderPane.setBottom(new Label("Testing"));
+        //((Group) scene.getRoot()).getChildren().addAll(chart, caption);
 
-        informationWindow.setScene(scene);
+        informationWindow.setScene(new Scene(borderPane, 600, 600));
         informationWindow.show();
+
+    }
+
+    public void showDishInformation() {
+        BorderPane borderPane = new BorderPane();
+
+
+        // ComboBox combobox = new ComboBox<String>(FXCollections.observableArrayList("One", "Two", "Three"));
+        ComboBox combobox = new ComboBox();
+        for (Restaurant r : CrabFoodOperator.listOfRestaurant) {
+            combobox.getItems().add(r.getName());
+        }
+
+        //combobox.getSelectionModel().select(0);  //automatically select the first index
+        combobox.setId("changed");  //id for CSS
+        combobox.setPromptText("Restaurant");
+
+
+        HBox topMenu = new HBox();
+        topMenu.setAlignment(Pos.CENTER);
+        Label select_restaurant = new Label("Select Restaurant :");
+        select_restaurant.setFont(Font.font("Arial", 16));
+        topMenu.getChildren().add(select_restaurant);
+        topMenu.setSpacing(10);
+        topMenu.getChildren().add(combobox);
+
+        BorderPane.setMargin(topMenu, new Insets(10, 0, 0, 0));
+        borderPane.setTop(topMenu);
+        BorderPane.setAlignment(combobox, Pos.CENTER);
+
+        Label testLabel = new Label();
+
+        borderPane.setCenter(testLabel);
+
+        ObservableList<PieChart.Data> pieChartData_Dish = FXCollections.observableArrayList();
+
+        final PieChart pchart = new PieChart(pieChartData_Dish);
+        pchart.getData().forEach(data -> {
+            String percentage = (int) data.getPieValue() + "Dish(es)";
+            Tooltip toolTip = new Tooltip(percentage);
+            toolTip.setFont(Font.font("Arial", 15));
+            Tooltip.install(data.getNode(), toolTip);
+        });
+
+        VBox vbox = new VBox();
+        Text dishes_Text = new Text("Dishes");
+        dishes_Text.setFont(Font.font("Arial",FontWeight.BOLD,18));
+
+        combobox.setOnAction(e -> {
+            pchart.setTitle("Dishes from "+ combobox.getValue().toString());
+            if (combobox.getValue() != null && !combobox.getValue().toString().isEmpty()) {
+                pieChartData_Dish.clear();
+                vbox.getChildren().clear();
+                vbox.getChildren().add(dishes_Text);
+                testLabel.setText(combobox.getValue().toString());
+
+                Restaurant tempRestaurant = new Restaurant();
+                for (Restaurant r : CrabFoodOperator.listOfRestaurant) {
+                    if (combobox.getValue().toString().equalsIgnoreCase(r.getName()))
+                        tempRestaurant = r;
+                }
+
+                Set<String> keys = tempRestaurant.getDishSet(); //get all keys
+               // System.out.println(keys); //to check if the keys we get are correct to the restaurant or not
+
+                for (String str : keys) {
+                    pieChartData_Dish.add(new PieChart.Data(str, Restaurant.dishOrderList.get(str)));
+                    Text tempLabel = new Text();
+                    tempLabel.setText(Restaurant.dishOrderList.get(str) +" "+ str);
+                    tempLabel.setFont(Font.font("Arial",15));
+                    vbox.getChildren().add(tempLabel);
+                }
+
+            }
+        });
+
+        pchart.setStartAngle(90);
+
+        Scene scene = new Scene(new Group());
+        ((Group) scene.getRoot()).getChildren().addAll(pchart);
+        vbox.setAlignment(Pos.CENTER_LEFT);
+        vbox.setPadding(new Insets(10));
+        vbox.setSpacing(10);
+        borderPane.setCenter(pchart);
+        borderPane.setRight(vbox);
+
+        borderPane.getStylesheets().add(getResource("DishInfo.css"));
+        Stage dishWindow = new Stage();
+        dishWindow.setResizable(false);
+        dishWindow.setScene(new Scene(borderPane, 800, 600));
+        dishWindow.setTitle("Dish Order Status");
+        dishWindow.show();
+
 
     }
 

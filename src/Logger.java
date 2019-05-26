@@ -5,9 +5,10 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// A class to log onto the text file
 public class Logger {
-    String logFile = "Log.txt";
-    String formatString = "%-10s %-13s %-12s %-14s %-15s %-15s%n";
+    String logFile = "Log.txt";    // The name of the file that will be log onto
+    String formatString = "%-10s %-13s %-12s %-14s %-15s %-15s%n";    // The format of logging
     PrintWriter pw = null;
 
     public Logger() {
@@ -15,13 +16,13 @@ public class Logger {
     }
 
     public void log(Customer c, int i) {
-
         try {
             File file = new File(logFile);
+            // Check if file exist
             if (file.exists()) {
                 pw = new PrintWriter(new BufferedWriter(new FileWriter(logFile, true)));
             } else {
-                pw = new PrintWriter(logFile);
+                pw = new PrintWriter(logFile);   // Create a new file
             }
             int totalTime = c.getFinishedCookingTime() - c.getOrderTimeInt() + c.getDeliveryTime();
             pw.print(String.format(formatString, "|" + i, "|" + c.getOrderTimeStr(), "|" + c.getOrderTimeStr(), "|" + c.getFinishedCookingTime(), "|" + c.getDeliveryTime(), "|" + totalTime));

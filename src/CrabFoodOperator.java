@@ -9,16 +9,19 @@ import java.util.HashMap;
 
 public class CrabFoodOperator {
 
-    static ArrayList<Restaurant> listOfRestaurant = new ArrayList<Restaurant>();
-    static SomeList<Integer, String> listOfProcesses = new SomeList<>();
-    static SomeList<Integer, String> copy_listOfProcesses = new SomeList<>();
-    static HashMap<String, Integer> orderStatusList = new HashMap<String, Integer>();
-    private static StringProperty process;
-    private static ArrayList<Customer> listOfCustomer = new ArrayList<>();
-    private static Logger logger = new Logger();
+    static ArrayList<Restaurant> listOfRestaurant = new ArrayList<Restaurant>();    // Store a list of restaurant
+    static SomeList<Integer, String> listOfProcesses = new SomeList<>();    // Store a list of processes
+    static SomeList<Integer, String> copy_listOfProcesses = new SomeList<>();    // Copy of list of processes
+    static HashMap<String, Integer> orderStatusList = new HashMap<String, Integer>();    // A hashmap containing orders and amount of orders
+    private static StringProperty process;    // A string that will tell the processe in the UI
+    private static ArrayList<Customer> listOfCustomer = new ArrayList<>();    // A list of customers
+    private static Logger logger = new Logger();    // To log onto the text file
+    private static String restaurantDetails = "Input.txt";    // The file containing the restaurant details
+    private static String customerDetails = "Customer.txt";   // The file containing the customer details
 
     public CrabFoodOperator() {
 
+        // Do all this when CrabFoodOperator is declared in main
         logger.startLog();
         readRestaurant();
         readCustomer();
@@ -27,17 +30,19 @@ public class CrabFoodOperator {
         System.out.println();
         startDelivery();
         listOfProcesses.printList();
+        System.out.println();
         copy_listOfProcesses.copy(listOfProcesses);
         //System.out.println();
         //copy_listOfProcesses.printList();
         //checkRestaurant();
         //checkCustomer();
-
         process = new SimpleStringProperty("");
     }
 
     public static void startDelivery() {
 
+        // Start with list of customer,
+        // Store into processes
         int customerNumber = 1;
         for (int i = 0; i < listOfCustomer.size(); i++) {
             Customer tempCustomer = listOfCustomer.get(i);
@@ -77,12 +82,12 @@ public class CrabFoodOperator {
             listOfProcesses.add(deliveredTime, tempString4);
             tempCustomer.setDeliveryTime(coord[2]);
 
-            // ADD THIS LATER
-            // this will log to textfile
-            // logger.log(tempCustomer, customerNumber);
-
             orderStatusList.put(restaurant, orderStatusList.get(restaurant) + 1);
-            //System.out.println(orderStatusList+"\n"); //print out whats in the haspmap
+            Restaurant tempRestaurant = restaurantIdentifier(restaurant);
+            tempRestaurant.dishOrderList.put(dish, tempRestaurant.dishOrderList.get(dish) + 1);
+
+
+            //System.out.println(orderStatusList+"\n"); // Print out whats in the hashmap
             logger.log(tempCustomer, customerNumber);
 
             customerNumber++;
@@ -110,13 +115,7 @@ public class CrabFoodOperator {
 
     public static int[] branchIdentifier(String s, Customer c) {
         int[] coord = new int[3];
-        Restaurant r = new Restaurant();
-        for (int i = 0; i < listOfRestaurant.size(); i++) {
-            if (listOfRestaurant.get(i).getName().equalsIgnoreCase(s)) {
-                r = listOfRestaurant.get(i);
-                break;
-            }
-        }
+        Restaurant r = restaurantIdentifier(s);
 
         Branch b = new Branch();
         int minCustomer = 0;
@@ -131,18 +130,26 @@ public class CrabFoodOperator {
                 i = 0;
             }
         }
-
         coord[0] = b.getX();
         coord[1] = b.getY();
         coord[2] = coord[0] + coord[1];
 
-
         return coord;
+    }
 
+    public static Restaurant restaurantIdentifier(String str) {
+        Restaurant r = new Restaurant();
+        for (int i = 0; i < listOfRestaurant.size(); i++) {
+            if (listOfRestaurant.get(i).getName().equalsIgnoreCase(str)) {
+                r = listOfRestaurant.get(i);
+                break;
+            }
+        }
+        return r;
     }
 
     public static void appendToProcess(String stringToAppend) {
-        process.set(process.concat("\n" + stringToAppend).get());
+        process.set(process.concat(stringToAppend + "\n").get());
     }
 
     public static StringProperty getProcess() {
@@ -165,14 +172,13 @@ public class CrabFoodOperator {
         String str;
         boolean newCustomer = true;
         try {
-            BufferedReader br = new BufferedReader(new FileReader("Customer.txt")); //restaurant list file
+            BufferedReader br = new BufferedReader(new FileReader(customerDetails)); // Customer list file
             while ((str = br.readLine()) != null) {
                 if (str.equals("")) {
                     newCustomer = true;
                 } else if (newCustomer) {
 
-
-                    listOfCustomer.add(new Customer(str, br.readLine(), br.readLine()));
+                    listOfCustomer.add(new Customer(str, br.readLine(), br.readLine())); //new Customer(time,Restaurant Name, Dish)
                     newCustomer = false;
                     //newCustomer = true;
                 }
@@ -209,12 +215,12 @@ public class CrabFoodOperator {
             int restaurantIndex = 0;
 
             try {
-                BufferedReader br = new BufferedReader(new FileReader("Input.txt")); //restaurant list file
+                BufferedReader br = new BufferedReader(new FileReader(restaurantDetails)); // Restaurant list file
                 while ((str = br.readLine()) != null) {
                     //  System.out.println(str);
                     if (readingRes) {
                         listOfRestaurant.add(new Restaurant(str));
-                        orderStatusList.put(str,0);
+                        orderStatusList.put(str, 0);
                         readingRes = false;
                     } else if (str.equals("")) {
                         //reset to reading a new restaurant

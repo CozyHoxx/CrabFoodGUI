@@ -4,8 +4,10 @@ public class Quicksort {
     private ArrayList<Branch> branch;
     private int size;
 
+    // A main method for the QuickSort class
+    // This class uses the concept of a quicksort
     public void sort(ArrayList<Branch> values) {
-        // check for empty or null array
+        // Check for empty or null array
         if (values == null || values.size() == 0) {
             return;
         }

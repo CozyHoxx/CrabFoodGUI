@@ -1,14 +1,21 @@
+/*
+ * This class is responsible for the storing and sorting of processes
+ */
+
 public class SomeList<K extends Comparable<K>, V> {
     SomeNode<K, V> head;
     SomeNode<K, V> tail;
     int size = 0;
 
+    // Constructor
     public SomeList() {
         this.head = null;
         this.tail = null;
     }
 
+    // Add method to add to the list
     public void add(K time, V string) {
+        // Insert the first node
         if (size == 0) {
             SomeNode<K, V> newNode = new SomeNode<>(time, string);
             this.head = newNode;
@@ -20,11 +27,14 @@ public class SomeList<K extends Comparable<K>, V> {
             SomeNode current = head;
             for (int i = 0; i < size; i++) {
                 if (current.next != null) {
+                    // If the time of node we want to add is is larger or equal to the current node
+                    // Something like a insertion of node, insert where the node should be according to its TIME
                     if ((time.compareTo((K) current.next.time) > 0) || (time.compareTo((K) current.next.time) == 0)) {
                         current = current.next;
                     }
                 }
             }
+            // Insert the node
             SomeNode<K, V> temp = current.next;
             current.next = new SomeNode<K, V>(time, string);
             current.next.next = temp;
@@ -33,6 +43,8 @@ public class SomeList<K extends Comparable<K>, V> {
 
     }
 
+    // Same Add method but for the usage of set method in this class
+    // Is not used but is here for future updates, features
     public void add(int index, K time, V string) {
         if (index == size)
             addLast(time, string);
@@ -50,6 +62,7 @@ public class SomeList<K extends Comparable<K>, V> {
         }
     }
 
+    // Is used in the add with index method
     public void addLast(K time, V string) {
 
         if (tail == null) {
@@ -61,6 +74,7 @@ public class SomeList<K extends Comparable<K>, V> {
         size++;
     }
 
+    // Method used in remove with index
     public K removeFirst() {
         if (size == 0) return null;
         else {
@@ -74,6 +88,7 @@ public class SomeList<K extends Comparable<K>, V> {
         }
     }
 
+    // Remove the first node returning the TIME content of the node in string
     public String removeFirst_Str() {
         if (size == 0) return null;
         else {
@@ -94,12 +109,9 @@ public class SomeList<K extends Comparable<K>, V> {
             V tempString = getString(0);
             head = head.next;
             size--;
-            return getTimeInStr(temp)+ ""+ tempString;
+            return getTimeInStr(temp) + "" + tempString;
         }
     }
-
-
-
 
     public K removeLast() {
         if (size == 0) return null;
@@ -137,6 +149,7 @@ public class SomeList<K extends Comparable<K>, V> {
         }
     }
 
+    // For future expansion to look for a certain time
     public int indexOf(K time) {
         int index = 0;
         for (SomeNode temp = head; temp != null; temp = temp.next) {
@@ -149,6 +162,7 @@ public class SomeList<K extends Comparable<K>, V> {
         return -1;
     }
 
+    // Get the TIME value
     public K getTime(int index) {
         if (index < 0 || index >= size) return null;
         else if (index == 0) return head.time;
@@ -161,6 +175,7 @@ public class SomeList<K extends Comparable<K>, V> {
         }
     }
 
+    // Actually this is a method to find the node based on index then pass to getTimeInStr(Node node) to return
     public String getTime_Str(int index) {
         String str;
         String minuteStr;
@@ -182,13 +197,14 @@ public class SomeList<K extends Comparable<K>, V> {
 
     }
 
-    public  V getString(int index) {
+    // Return the String content of the node
+    // Return process
+    public V getString(int index) {
         if (index < 0 || index >= size) return null;
-        else if (index == 0){
+        else if (index == 0) {
             return head.string;
 
-        }
-        else {
+        } else {
             SomeNode<K, V> temp = head;
             for (int i = 1; i <= index; i++) {
                 temp = temp.next;
@@ -224,9 +240,9 @@ public class SomeList<K extends Comparable<K>, V> {
         return this.size;
     }
 
-    //RETURN HH:MM
+    // RETURN HH:MM in string
     public String getTimeInStr(SomeNode<K, V> node) {
-        String str="";
+        String str = "";
         String minuteStr;
         String hourStr;
         int minuteInt = Integer.parseInt(node.time.toString()) % 60;
@@ -237,20 +253,14 @@ public class SomeList<K extends Comparable<K>, V> {
 
     }
 
-
-
-
-
-
-
-    public void copy(SomeList<K,V> list){
-        for (int i = 0 ; i < list.size ;i++){
-            this.add(list.getTime(i),list.getString(i));
+    // Method for hard copying the list
+    public void copy(SomeList<K, V> list) {
+        for (int i = 0; i < list.size; i++) {
+            this.add(list.getTime(i), list.getString(i));
             //CHECKING PURPOPSES
             //System.out.println(list.getTime(i));
             //System.out.println(list.getString(i));
         }
     }
-
 
 }
