@@ -141,3 +141,241 @@ Logged on : 26-05-2019
 |4         |00:15        |00:15       |35            |4              |24            
 Logged on : 26-05-2019
 
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 28-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 28-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 28-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:03        |00:03       |23            |1              |21            
+|2         |00:08        |00:08       |28            |2              |22            
+|3         |00:13        |00:13       |33            |6              |26            
+|4         |00:15        |00:15       |35            |6              |26            
+|5         |00:15        |00:15       |35            |4              |24            
+|6         |00:18        |00:18       |38            |6              |26            
+|7         |00:20        |00:20       |40            |6              |26            
+|8         |00:25        |00:25       |45            |4              |24            
+|9         |00:27        |00:27       |47            |6              |26            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+
+|Customer  |Arrival Time |Order Time  |Finished Time |Delivery Time  |Total Time    
+|1         |00:00        |00:00       |20            |1              |21            
+|2         |00:13        |00:13       |33            |2              |22            
+|3         |00:15        |00:15       |35            |6              |26            
+|4         |00:15        |00:15       |35            |4              |24            
+Logged on : 29-05-2019
+

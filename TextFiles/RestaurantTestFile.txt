@@ -9,6 +9,8 @@ Crabby Meal
 20
 Sailors Suprise
 20
+New Dish
+5
 
 Phum Bucket
 1 3

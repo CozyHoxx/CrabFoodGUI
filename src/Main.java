@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -28,12 +29,12 @@ import java.util.Set;
 
 
 public class Main extends Application {
-    private final static double animationDuration = 1;
     public volatile static Clock clock = new Clock();
     public static CrabFoodOperator cfOperator = new CrabFoodOperator();
     static Logger logger = new Logger();
-    Scene menuScene, logScene;
+    private static double animationDuration = 0.5;  // Time interval for each second in simulation
     private static boolean processEnded = false;
+    Scene menuScene, logScene;
 
     public static void main(String[] args) {
         launch(args);
@@ -44,6 +45,7 @@ public class Main extends Application {
         return Main.class.getResource(path).toExternalForm();
     }
 
+    // To format a string
     public static String pad(int fieldWidth, char padChar, String s) {
         StringBuilder sb = new StringBuilder();
         for (int i = s.length(); i < fieldWidth; i++) {
@@ -53,21 +55,32 @@ public class Main extends Application {
         return sb.toString();
     }
 
+    // Call every second of the Timeline
     public static void updateProcess() {
+        GetResource sound = new GetResource(); // The class for the playing of sound
         if (clock.getTime().equalsIgnoreCase("00:00")) {
             cfOperator.appendToProcess(clock.getTime() + " A new day has begun!");
         }
+
+        // If clock is the same as the time that the process is occuring, print out the processes
         if (CrabFoodOperator.copy_listOfProcesses.size != 0) {
             while (clock.getTime().equalsIgnoreCase(CrabFoodOperator.copy_listOfProcesses.getTime_Str(0))) {
                 String str = CrabFoodOperator.copy_listOfProcesses.removeFirstNode();
                 System.out.println(str);
+
+                if (str.toLowerCase().contains("delivered"))
+                    sound.playAudio("delievered");
+                if (str.toLowerCase().contains("finished"))
+                    sound.playAudio("doneprep");
+
                 cfOperator.appendToProcess(str);
             }
         }
 
-        if(CrabFoodOperator.copy_listOfProcesses.size==0 && !processEnded){
-            processEnded=true;
-            String endOfProcess ="";
+        // If the list of processes reaches the end, Print out the statement
+        if (CrabFoodOperator.copy_listOfProcesses.size == 0 && !processEnded) {
+            processEnded = true;
+            String endOfProcess = "";
             endOfProcess += clock.getTime() + " All customers are served and shops are closed";
             System.out.println(endOfProcess);
             cfOperator.appendToProcess(endOfProcess);
@@ -76,13 +89,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-
         //making the menu scene
         makeMenuScene(primaryStage);
         //makeing the log scene
         makeLogScene(primaryStage);
-
 
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(1100);
@@ -96,6 +106,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+
     public void makeMenuScene(Stage primaryStage) {
         /*  MAKING THE CLOCK   */
         final Label digitalClock = new Label();
@@ -107,7 +118,6 @@ public class Main extends Application {
                         new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent actionEvent) {
-
                                 String hourString = pad(2, '0', clock.getHOUR() + "");
                                 String minuteString = pad(2, '0', clock.getMINUTE() + "");
                                 //check if clock is correct or not
@@ -120,7 +130,6 @@ public class Main extends Application {
                 ),
                 new KeyFrame(Duration.seconds(animationDuration))
         );
-
 
         //Start cycle for digital clock
         digitalTime.setCycleCount(Animation.INDEFINITE);
@@ -140,6 +149,7 @@ public class Main extends Application {
         timeString.setFont(new Font("Verdana", 20));
         hbox.getChildren().addAll(timeString, digitalClock);
 
+        // The processes labels on top
         Label processLabel = new Label("Processes");
         processLabel.setFont(Font.font("Verdana", 18));
 
@@ -149,7 +159,6 @@ public class Main extends Application {
         textArea.setEditable(false);
         textArea.setFont(Font.font("Verdana", 17));
         textArea.textProperty().bind(CrabFoodOperator.getProcess());
-
 
         //GRIDPANE
         GridPane gridPane = new GridPane();
@@ -183,15 +192,31 @@ public class Main extends Application {
         btn_viewDailyStatus.setMaxSize(150, 50);
         btn_viewDailyStatus.setOnAction(e -> showOrderInformation());
 
-        //BUTTONG to view Restaurant dish order details
+        //BUTTON to view Restaurant dish order details
         Button btn_viewRestaurantStatus = new Button("Restaurant Dish Status");
         btn_viewRestaurantStatus.setMaxSize(150, 150);
         btn_viewRestaurantStatus.setOnAction(e -> showDishInformation());
 
+        // BUTTON to pause the animation
+        Button btn_pause = new Button("Pause");
+        btn_pause.setMaxSize(150, 150);
+        btn_pause.setOnAction(e -> {
+            if (btn_pause.getText().equalsIgnoreCase("Play")) {
+                digitalTime.play();
+                btn_pause.setText("Pause");
+            } else {
+                digitalTime.pause();
+                btn_pause.setText("Play");
+            }
+        });
+
+        borderPane.setBottom(btn_pause);
+        BorderPane.setAlignment(btn_pause, Pos.CENTER);
+
         vbox.getChildren().addAll(btnViewLog, btn_viewMap, btn_viewDailyStatus, btn_viewRestaurantStatus);
 
         menuScene = new Scene(borderPane, 1200, 800, Color.TRANSPARENT);
-        menuScene.getStylesheets().add(getResource("menu.css"));
+        menuScene.getStylesheets().add(getResource("CSS/menu.css"));
 
     }
 
@@ -211,18 +236,14 @@ public class Main extends Application {
         try (BufferedReader br = new BufferedReader(new FileReader(logger.getFile()))) {
             String line;
             while ((line = br.readLine()) != null) {
-
                 textArea.appendText(line + "\n");
             }
-
         } catch (Exception e) {
-
+            // Exception here
         }
-
 
         Button back_btn = new Button("Back");
         back_btn.setOnAction(e -> primaryStage.setScene(menuScene));
-
 
         borderPane.setTop(label);
         borderPane.setCenter(textArea);
@@ -235,7 +256,7 @@ public class Main extends Application {
         borderPane.setPadding(new Insets(10, 0, 10, 0));
 
         logScene = new Scene(borderPane, 600, 500);
-        logScene.getStylesheets().add(getResource("log.css"));
+        logScene.getStylesheets().add(getResource("CSS/log.css"));
 
     }
 
@@ -273,7 +294,7 @@ public class Main extends Application {
         window.initModality(Modality.NONE);
         int windowWidth = Map.getSize() * (Map.rectSize + 30);
         Scene mapScene = new Scene(borderPane, windowWidth, windowWidth - 20);
-        mapScene.getStylesheets().add(getResource("map.css"));
+        mapScene.getStylesheets().add(getResource("CSS/map.css"));
         //window.setScene(new Scene(borderPane, windowWidth, windowWidth - 20));
         window.setScene(mapScene);
         window.show();
@@ -285,11 +306,9 @@ public class Main extends Application {
         informationWindow.setTitle("Order Information");
 
         BorderPane borderPane = new BorderPane();
-
         Scene scene = new Scene(new Group());
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-
         Set<String> keys = CrabFoodOperator.orderStatusList.keySet(); //get all keys
 
         for (String str : keys) {
@@ -341,7 +360,7 @@ public class Main extends Application {
 
         ((Group) scene.getRoot()).getChildren().addAll(chart, caption);
         borderPane.setCenter(chart);
-        borderPane.getStylesheets().add(getResource("DishInfo.css"));
+        borderPane.getStylesheets().add(getResource("CSS/DishInfo.css"));
         // borderPane.setBottom(new Label("Testing"));
         //((Group) scene.getRoot()).getChildren().addAll(chart, caption);
 
@@ -393,10 +412,10 @@ public class Main extends Application {
 
         VBox vbox = new VBox();
         Text dishes_Text = new Text("Dishes");
-        dishes_Text.setFont(Font.font("Arial",FontWeight.BOLD,18));
+        dishes_Text.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 
         combobox.setOnAction(e -> {
-            pchart.setTitle("Dishes from "+ combobox.getValue().toString());
+            pchart.setTitle("Dishes from " + combobox.getValue().toString());
             if (combobox.getValue() != null && !combobox.getValue().toString().isEmpty()) {
                 pieChartData_Dish.clear();
                 vbox.getChildren().clear();
@@ -410,13 +429,13 @@ public class Main extends Application {
                 }
 
                 Set<String> keys = tempRestaurant.getDishSet(); //get all keys
-               // System.out.println(keys); //to check if the keys we get are correct to the restaurant or not
+                // System.out.println(keys); //to check if the keys we get are correct to the restaurant or not
 
                 for (String str : keys) {
                     pieChartData_Dish.add(new PieChart.Data(str, Restaurant.dishOrderList.get(str)));
                     Text tempLabel = new Text();
-                    tempLabel.setText(Restaurant.dishOrderList.get(str) +" "+ str);
-                    tempLabel.setFont(Font.font("Arial",15));
+                    tempLabel.setText(Restaurant.dishOrderList.get(str) + " " + str);
+                    tempLabel.setFont(Font.font("Arial", 15));
                     vbox.getChildren().add(tempLabel);
                 }
 
@@ -433,7 +452,7 @@ public class Main extends Application {
         borderPane.setCenter(pchart);
         borderPane.setRight(vbox);
 
-        borderPane.getStylesheets().add(getResource("DishInfo.css"));
+        borderPane.getStylesheets().add(getResource("CSS/DishInfo.css"));
         Stage dishWindow = new Stage();
         dishWindow.setResizable(false);
         dishWindow.setScene(new Scene(borderPane, 800, 600));

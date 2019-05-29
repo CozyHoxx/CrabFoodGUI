@@ -16,8 +16,8 @@ public class CrabFoodOperator {
     private static StringProperty process;    // A string that will tell the processe in the UI
     private static ArrayList<Customer> listOfCustomer = new ArrayList<>();    // A list of customers
     private static Logger logger = new Logger();    // To log onto the text file
-    private static String restaurantDetails = "Input.txt";    // The file containing the restaurant details
-    private static String customerDetails = "Customer.txt";   // The file containing the customer details
+    private static String restaurantDetails = "TextFiles/RestaurantTestFile.txt";    // The file containing the restaurant details
+    private static String customerDetails = "TextFiles/Customer.txt";   // The file containing the customer details
 
     public CrabFoodOperator() {
 
